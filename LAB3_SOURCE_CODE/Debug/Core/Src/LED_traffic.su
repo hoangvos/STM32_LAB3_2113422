@@ -1,0 +1,10 @@
+LED_traffic.c:10:6:off_all_led	8	static
+LED_traffic.c:19:6:on_red_1	8	static
+LED_traffic.c:24:6:on_amber_1	8	static
+LED_traffic.c:29:6:on_green_1	8	static
+LED_traffic.c:35:6:on_red_2	8	static
+LED_traffic.c:40:6:on_amber_2	8	static
+LED_traffic.c:45:6:on_green_2	8	static
+LED_traffic.c:51:6:toggle_led_red	8	static
+LED_traffic.c:59:6:toggle_led_amber	8	static
+LED_traffic.c:67:6:toggle_led_green	8	static

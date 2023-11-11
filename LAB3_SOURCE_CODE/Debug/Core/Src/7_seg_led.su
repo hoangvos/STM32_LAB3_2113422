@@ -1,0 +1,5 @@
+7_seg_led.c:10:6:off_all_7seg	8	static
+7_seg_led.c:16:6:update_buffer_7seg	16	static
+7_seg_led.c:26:6:display7SEG_1	16	static
+7_seg_led.c:120:6:display7SEG_2	16	static
+7_seg_led.c:217:6:display_7segled	16	static
