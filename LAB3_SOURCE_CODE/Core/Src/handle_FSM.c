@@ -42,9 +42,8 @@ void handle_FSM(){
 		display_7seg_road_1 = red_time;
 		display_7seg_road_2 = green_time;
 		setTimer_transfer(green_time*100);
-		setTimer_down(100);
-		setTimer_display_7seg(50);
 		update_buffer_7seg(display_7seg_road_1, display_7seg_road_2);
+		setTimer_display_7seg(50);
 		break;
 	case RED_GREEN:
 		on_red_1();
@@ -54,17 +53,16 @@ void handle_FSM(){
 			setTimer_transfer(amber_time*100);
 			current_state = RED_AMBER;
 		}
-		if(down_flag){
-			setTimer_down(100);
-			display_7seg_road_1--;
-			display_7seg_road_2--;
-			if(display_7seg_road_2 <= 0) display_7seg_road_2 = amber_time;
-			update_buffer_7seg(display_7seg_road_1, display_7seg_road_2);
-		}
 		if(display_7seg_flag){
-			setTimer_display_7seg(50);
 			index_7seg_led++;
 			index_7seg_led %= 2;
+			if(index_7seg_led == 0){
+				display_7seg_road_1--;
+				display_7seg_road_2--;
+				if(display_7seg_road_2 <= 0) display_7seg_road_2 = amber_time;
+				update_buffer_7seg(display_7seg_road_1, display_7seg_road_2);
+			}
+			setTimer_display_7seg(50);
 		}
 		if(is_button_pressed(0)){
 			current_state = MAN_RED;
@@ -86,18 +84,18 @@ void handle_FSM(){
 			setTimer_transfer(green_time*100);
 			current_state = GREEN_RED;
 		}
-		if(down_flag){
-			setTimer_down(100);
-			display_7seg_road_1--;
-			display_7seg_road_2--;
-			if(display_7seg_road_1 <= 0) display_7seg_road_1 = green_time;
-			if(display_7seg_road_2 <= 0) display_7seg_road_2 = red_time;
-			update_buffer_7seg(display_7seg_road_1, display_7seg_road_2);
-		}
 		if(display_7seg_flag){
-			setTimer_display_7seg(50);
+
 			index_7seg_led++;
 			index_7seg_led %= 2;
+			if(index_7seg_led == 0){
+				display_7seg_road_1--;
+				display_7seg_road_2--;
+				if(display_7seg_road_1 <= 0) display_7seg_road_1 = green_time;
+				if(display_7seg_road_2 <= 0) display_7seg_road_2 = red_time;
+				update_buffer_7seg(display_7seg_road_1, display_7seg_road_2);
+			}
+			setTimer_display_7seg(50);
 		}
 		if(is_button_pressed(0)){
 			current_state = MAN_RED;
@@ -119,17 +117,17 @@ void handle_FSM(){
 			setTimer_transfer(amber_time*100);
 			current_state = AMBER_RED;
 		}
-		if(down_flag){
-			setTimer_down(100);
-			display_7seg_road_1--;
-			display_7seg_road_2--;
-			if(display_7seg_road_1 <= 0) display_7seg_road_1 = amber_time;
-			update_buffer_7seg(display_7seg_road_1, display_7seg_road_2);
-		}
 		if(display_7seg_flag){
-			setTimer_display_7seg(50);
+
 			index_7seg_led++;
 			index_7seg_led %= 2;
+			if(index_7seg_led == 0){
+				display_7seg_road_1--;
+				display_7seg_road_2--;
+				if(display_7seg_road_1 <= 0) display_7seg_road_1 = amber_time;
+				update_buffer_7seg(display_7seg_road_1, display_7seg_road_2);
+			}
+			setTimer_display_7seg(50);
 		}
 		if(is_button_pressed(0)){
 			current_state = MAN_RED;
@@ -150,18 +148,17 @@ void handle_FSM(){
 			setTimer_transfer(green_time*100);
 			current_state = RED_GREEN;
 		}
-		if(down_flag){
-			setTimer_down(100);
-			display_7seg_road_1--;
-			display_7seg_road_2--;
-			if(display_7seg_road_1 <= 0) display_7seg_road_1 = red_time;
-			if(display_7seg_road_2 <= 0) display_7seg_road_2 = green_time;
-			update_buffer_7seg(display_7seg_road_1, display_7seg_road_2);
-		}
 		if(display_7seg_flag){
-			setTimer_display_7seg(50);
 			index_7seg_led++;
 			index_7seg_led %= 2;
+			if(index_7seg_led == 0){
+				display_7seg_road_1--;
+				display_7seg_road_2--;
+				if(display_7seg_road_1 <= 0) display_7seg_road_1 = red_time;
+				if(display_7seg_road_2 <= 0) display_7seg_road_2 = green_time;
+				update_buffer_7seg(display_7seg_road_1, display_7seg_road_2);
+			}
+			setTimer_display_7seg(50);
 		}
 		if(is_button_pressed(0)){
 			current_state = MAN_RED;
@@ -176,13 +173,13 @@ void handle_FSM(){
 		break;
 	case MAN_RED:
 		if(led_man_flag){
-			setTimer_led_man(25);
 			toggle_led_red();
+			setTimer_led_man(25);
 		}
 		if(display_7seg_flag){
-			setTimer_display_7seg(50);
 			display_7segled(index_7seg_led++);
 			index_7seg_led %= 2;
+			setTimer_display_7seg(50);
 		}
 		if(is_button_pressed(0)){
 			current_state = MAN_AMBER;
@@ -203,13 +200,13 @@ void handle_FSM(){
 		break;
 	case MAN_AMBER:
 		if(led_man_flag){
-			setTimer_led_man(25);
 			toggle_led_amber();
+			setTimer_led_man(25);
 		}
 		if(display_7seg_flag){
-			setTimer_display_7seg(50);
 			display_7segled(index_7seg_led++);
 			index_7seg_led %= 2;
+			setTimer_display_7seg(50);
 		}
 		if(is_button_pressed(0)){
 			current_state = MAN_GREEN;
@@ -230,13 +227,13 @@ void handle_FSM(){
 		break;
 	case MAN_GREEN:
 		if(led_man_flag){
-			setTimer_led_man(25);
 			toggle_led_green();
+			setTimer_led_man(25);
 		}
 		if(display_7seg_flag){
-			setTimer_display_7seg(50);
 			display_7segled(index_7seg_led++);
 			index_7seg_led %= 2;
+			setTimer_display_7seg(50);
 		}
 		if(is_button_pressed(0)){
 			current_state = CHECK_STATE;
@@ -252,8 +249,6 @@ void handle_FSM(){
 		}
 		break;
 	case CHECK_STATE:
-		off_all_led();
-		off_all_7seg();
 		current_state = RED_GREEN;
 		if(green_time + amber_time != red_time){
 			green_time = GREEN_DEFAULT_TIME;
@@ -263,9 +258,7 @@ void handle_FSM(){
 		display_7seg_road_1 = red_time;
 		display_7seg_road_2 = green_time;
 		setTimer_transfer(green_time*100);
-		setTimer_down(100);
-		setTimer_display_7seg(50);
 		update_buffer_7seg(display_7seg_road_1, display_7seg_road_2);
+		setTimer_display_7seg(50);
 	}
 }
-
