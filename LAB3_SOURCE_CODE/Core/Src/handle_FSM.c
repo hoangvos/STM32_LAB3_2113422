@@ -264,7 +264,7 @@ void handle_FSM(){
 		display_7seg_road_2 = green_time;
 		setTimer_transfer(green_time*100);
 		setTimer_down(100);
-		setTimer_display_7seg(1);
+		setTimer_display_7seg(50);
 		update_buffer_7seg(display_7seg_road_1, display_7seg_road_2);
 	}
 }
